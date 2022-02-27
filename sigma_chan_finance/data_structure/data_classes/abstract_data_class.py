@@ -14,3 +14,9 @@ class AbstractDataClass(metaclass=ABCMeta):
     @abstractmethod
     def __init__(self) -> None:
         pass
+
+    @abstractmethod
+    def validate_end(self) -> Any:
+        pass
+
+        

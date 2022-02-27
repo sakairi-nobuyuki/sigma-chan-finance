@@ -11,8 +11,9 @@ class ExchangeRate(BaseModel):
     source_candidates: list = ['yahoo_finance', 'fred']
     target: str
     target_candidates: list = ['USD', 'EUR', 'CNY']
-    end: str 
-    duration: str
+    end: str = ''
+    duration: str = '1000'
+
     
     @root_validator
     def source_type(cls, values):

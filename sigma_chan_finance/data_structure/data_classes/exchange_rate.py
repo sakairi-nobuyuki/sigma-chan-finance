@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from sigma_chan_finance.data_structure import parameters
 from sigma_chan_finance.data_structure.parameters import ExchangeRate as Parameters
 from sigma_chan_finance.data_structure.data_classes import AbstractDataClass
 import dataclasses
@@ -19,6 +20,14 @@ class ExchangeRate(AbstractDataClass):
     def __init__(self, parameters: Parameters) -> None:
         self.source = parameters.source
         self.target = parameters.target
-        self.end = datetime.datetime.strptime(parameters.end, '%Y/%m/%d')
+        self.end = self.validate_end(parameters)
         self.duration = datetime.timedelta(days=int(parameters.duration))
         self.start = self.end - self.duration
+
+    def validate_end(self, parameters: Parameters) -> datetime:
+        if parameters.end == '':
+            return datetime.datetime.now()
+        else:
+            return datetime.datetime.strptime(parameters.end, '%Y/%m/%d')
+
+
