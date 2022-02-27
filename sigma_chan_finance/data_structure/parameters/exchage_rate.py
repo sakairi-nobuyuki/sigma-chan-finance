@@ -13,8 +13,6 @@ class ExchangeRate(BaseModel):
     target_candidates: list = ['USD', 'EUR', 'CNY']
     end: str 
     duration: str
-
-
     
     @root_validator
     def source_type(cls, values):
@@ -28,3 +26,12 @@ class ExchangeRate(BaseModel):
             raise ValueError('{} must be in {}'.format(values['target'], values['target_candidates']))
         return values
 
+    @validator('end')
+    def end_time(cls, v):
+        if len(v.split('/')) != 3:
+            raise ValueError(f'date format of \'end\' must be YY/mm/dd')
+
+        if len(v.split(':')) != 2:
+            raise ValueError(f'time format of \'end\' must be HH:MM')
+
+        return v
