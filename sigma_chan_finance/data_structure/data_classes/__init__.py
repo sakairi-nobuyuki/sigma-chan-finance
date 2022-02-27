@@ -1,0 +1,1 @@
+from sigma_chan_finance.data_structure.data_classes.exchange_rate import *

@@ -8,7 +8,7 @@ import datetime
 class ExchangeRate(BaseModel):
 
     source: str
-    source_candidates: list = ['yahoo_finance']
+    source_candidates: list = ['yahoo_finance', 'fred']
     target: str
     target_candidates: list = ['USD', 'EUR', 'CNY']
     end: str 
@@ -31,7 +31,7 @@ class ExchangeRate(BaseModel):
         if len(v.split('/')) != 3:
             raise ValueError(f'date format of \'end\' must be YY/mm/dd')
 
-        if len(v.split(':')) != 2:
-            raise ValueError(f'time format of \'end\' must be HH:MM')
+        #if len(v.split(':')) != 2:
+        #    raise ValueError(f'time format of \'end\' must be HH:MM')
 
         return v

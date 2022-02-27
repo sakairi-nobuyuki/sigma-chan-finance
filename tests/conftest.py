@@ -7,7 +7,7 @@ def mock_exchange_rate_parameter():
     parameter_dict = {
         'source': 'yahoo_finance',
         'target': 'USD',
-        'end': '2022/02/27 12:05',
+        'end': '2022/02/27',
         'duration': '100'
     }
     return parameter_dict
