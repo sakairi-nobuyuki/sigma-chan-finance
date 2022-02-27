@@ -1,12 +1,13 @@
 # coding: utf-8
 
 from sigma_chan_finance.data_structure.parameters import ExchangeRate as Parameters
+from sigma_chan_finance.data_structure.data_classes import AbstractDataClass
 import dataclasses
 import numpy as np
 import datetime
 
 @dataclasses.dataclass
-class ExchangeRate:
+class ExchangeRate(AbstractDataClass):
 
     source: str
     target: str
@@ -19,6 +20,5 @@ class ExchangeRate:
         self.source = parameters.source
         self.target = parameters.target
         self.end = datetime.datetime.strptime(parameters.end, '%Y/%m/%d')
-        #self.end = datetime.datetime.strptime(parameters.end, '%Y/%m/%d %H:%M')
         self.duration = datetime.timedelta(days=int(parameters.duration))
         self.start = self.end - self.duration
