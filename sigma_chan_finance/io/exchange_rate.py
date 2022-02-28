@@ -8,12 +8,8 @@ from pandas_datareader import data as pdr
     
 
 
-class ExchangeRateFred:
-#class ExchangeRateFred(AbstractExchangeRate):
-    def __init__(self, intput: Input) -> None:
-        pass
-#        if input.source != 'fred':
-#            raise ValueError(f'Unsuitable target against data read from FRED: {input.source}')
+class ExchangeRate:
 
     def __call__(self, input: Input):
+
         return pdr.DataReader(input.target, input.source, input.start, input.end)

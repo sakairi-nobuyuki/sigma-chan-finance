@@ -3,7 +3,7 @@
 from sigma_chan_finance.data_structure.data_classes import ExchangeRate as Input
 from sigma_chan_finance.data_structure.parameters import ExchangeRate as Parameters
 
-from sigma_chan_finance.io import ExchangeRateFred as Fred
+from sigma_chan_finance.io import ExchangeRate as Fx
 
 class TestFredDataRead:
     def test_init(self, mock_exchange_rate_parameter):
@@ -16,5 +16,5 @@ class TestFredDataRead:
 
         print(vars(input))
 
-        fred = Fred(input)
+        fred = Fx()
         print(fred(input))
