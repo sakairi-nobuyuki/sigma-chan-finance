@@ -1,14 +1,14 @@
 # coding: utf-8
 
 from sigma_chan_finance.data_structure import parameters
-from sigma_chan_finance.data_structure.parameters import ExchangeRate as Parameters
-from sigma_chan_finance.data_structure.data_classes import AbstractDataClass
+from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
+from sigma_chan_finance.data_structure.data_classes import AbstractDataReader
 import dataclasses
 import numpy as np
 import datetime
 
 @dataclasses.dataclass
-class ExchangeRate(AbstractDataClass):
+class DataReader(AbstractDataReader):
 
     source: str
     target: str

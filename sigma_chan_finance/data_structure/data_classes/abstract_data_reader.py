@@ -3,7 +3,7 @@
 from typing import Any, List
 from abc import ABCMeta, abstractmethod
 
-class AbstractDataClass(metaclass=ABCMeta):
+class AbstractDataReader(metaclass=ABCMeta):
     source: str
     target: str
     start: Any

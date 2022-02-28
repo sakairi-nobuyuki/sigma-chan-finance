@@ -2,10 +2,10 @@
 
 from datetime import datetime, timedelta
 
-from sigma_chan_finance.data_structure.data_classes import ExchangeRate as Input
-from sigma_chan_finance.data_structure.parameters import ExchangeRate as Parameters
+from sigma_chan_finance.data_structure.data_classes import DataReader as Input
+from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
 
-class TestExchangeRate:
+class TestDataReader:
     def test_init(self, mock_exchange_rate_parameter):
         parameters = Parameters(**mock_exchange_rate_parameter)
         input = Input(parameters)

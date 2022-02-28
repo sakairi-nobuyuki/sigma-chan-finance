@@ -2,13 +2,13 @@
 
 from abc import ABCMeta, abstractmethod
 from typing import Any
-from sigma_chan_finance.data_structure.data_classes import ExchangeRate as Input
+from sigma_chan_finance.data_structure.data_classes import DataReader as Input
 from pandas_datareader import data as pdr
 
     
 
 
-class ExchangeRate:
+class DataReader:
 
     def __call__(self, input: Input):
 

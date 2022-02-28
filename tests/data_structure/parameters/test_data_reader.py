@@ -1,16 +1,16 @@
 # coding: utf-8
 
 
-from sigma_chan_finance.data_structure.parameters import ExchangeRate
+from sigma_chan_finance.data_structure.parameters import DataReader
 import pytest
 
 
 
 
-class TestExchangeRate:
+class TestDataReader:
     def test_init(self, mock_exchange_rate_parameter):
 
-        parameters = ExchangeRate(**mock_exchange_rate_parameter)
+        parameters = DataReader(**mock_exchange_rate_parameter)
 
         assert parameters.source == mock_exchange_rate_parameter['source']
         assert parameters.target == mock_exchange_rate_parameter['target']
@@ -20,4 +20,4 @@ class TestExchangeRate:
         mock_exchange_rate_parameter['target'] = 'PHP'
 
         with pytest.raises(ValueError): 
-            parameters = ExchangeRate(**mock_exchange_rate_parameter)
+            parameters = DataReader(**mock_exchange_rate_parameter)

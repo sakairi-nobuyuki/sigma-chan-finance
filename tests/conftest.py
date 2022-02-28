@@ -2,7 +2,7 @@
 
 import pytest
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='function')
 def mock_exchange_rate_parameter():
     parameter_dict = {
         'source': 'yahoo_finance',
