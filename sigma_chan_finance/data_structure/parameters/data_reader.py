@@ -7,10 +7,10 @@ class DataReader(BaseModel):
     source: str
     source_candidates: list = ['yahoo_finance', 'fred']
     target: str
-    target_candidates: list = ['USD', 'EUR', 'CNY']
+    target_candidates: list = ['DEXJPUS', 'EUR', 'CNY']
     end: str = ''
     duration: str = '1000'
-
+    data_save_path: str = 'data/hoge.csv'
     
     @root_validator
     def source_type(cls, values):

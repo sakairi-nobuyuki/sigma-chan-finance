@@ -16,6 +16,7 @@ class DataReader(AbstractDataReader):
     end: datetime
     duration: datetime.timedelta
     values: np.ndarray
+    data_save_path: str
 
     def __init__(self, parameters: Parameters) -> None:
         self.source = parameters.source
@@ -23,6 +24,7 @@ class DataReader(AbstractDataReader):
         self.end = self.validate_end(parameters)
         self.duration = datetime.timedelta(days=int(parameters.duration))
         self.start = self.end - self.duration
+        self.data_save_path = parameters.data_save_path
 
     def validate_end(self, parameters: Parameters) -> datetime:
         if parameters.end == '':
