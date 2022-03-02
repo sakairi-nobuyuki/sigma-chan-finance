@@ -2,8 +2,9 @@
 
 from datetime import datetime, timedelta
 
-from sigma_chan_finance.data_structure.data_classes import DataReader as Input
-from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
+
+from data_reader.data_structure.data_classes import DataReader as Input
+from data_reader.data_structure.parameters import DataReader as Parameters
 
 class TestDataReader:
     def test_init(self, mock_exchange_rate_parameter):

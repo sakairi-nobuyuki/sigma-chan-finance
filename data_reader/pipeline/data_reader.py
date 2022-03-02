@@ -1,8 +1,8 @@
 # coding: utf-8
 
 
-from sigma_chan_finance.data_structure.data_classes import DataReader as DataClass
-from sigma_chan_finance.io import DataReader as InputOutput
+from data_reader.data_structure.data_classes import DataReader as DataClass
+from data_reader.io import DataReader as InputOutput
 
 
 

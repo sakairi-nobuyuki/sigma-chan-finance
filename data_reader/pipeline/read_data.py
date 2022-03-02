@@ -1,10 +1,10 @@
 # coding: utf-8
 
 
-from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
-from sigma_chan_finance.data_structure.data_classes import DataReader as DataClass
-from sigma_chan_finance.io import DataReader as InputOutput
-from sigma_chan_finance.pipeline import DataReader
+from data_structure.parameters import DataReader as Parameters
+from data_structure.data_classes import DataReader as DataClass
+from io import DataReader as InputOutput
+from pipeline import DataReader
 
 import json
 import argparse

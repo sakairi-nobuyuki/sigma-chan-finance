@@ -3,7 +3,7 @@
 import os
 from abc import ABCMeta, abstractmethod
 from typing import Any
-from sigma_chan_finance.data_structure.data_classes import DataReader as Input
+from data_reader.data_structure.data_classes import DataReader as Input
 from pandas_datareader import data as pdr
 import numpy as np
 import pandas as pd

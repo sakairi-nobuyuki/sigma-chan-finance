@@ -1,8 +1,8 @@
 # coding: utf-8
 
-from sigma_chan_finance.data_structure import parameters
-from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
-from sigma_chan_finance.data_structure.data_classes import AbstractDataReader
+from data_reader.data_structure import parameters
+from data_reader.data_structure.parameters import DataReader as Parameters
+from data_reader.data_structure.data_classes import AbstractDataReader
 import dataclasses
 import numpy as np
 import datetime

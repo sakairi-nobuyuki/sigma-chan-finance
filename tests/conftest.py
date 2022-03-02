@@ -6,7 +6,7 @@ import pytest
 def mock_exchange_rate_parameter():
     parameter_dict = {
         'source': 'yahoo_finance',
-        'target': 'USD',
+        'target': 'DEXJPUS',
         'end': '2022/02/27',
         'duration': '100'
     }

@@ -4,12 +4,12 @@ import os
 import shutil
 import pandas as pd
 
-from sigma_chan_finance.data_structure import parameters
+from data_reader.data_structure import parameters
 
-from sigma_chan_finance.data_structure.data_classes import DataReader as Input
-from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
+from data_reader.data_structure.data_classes import DataReader as Input
+from data_reader.data_structure.parameters import DataReader as Parameters
 
-from sigma_chan_finance.io import DataReader as Fx
+from data_reader.io import DataReader as Fx
 
 class TestFredDataRead:
     def test_init(self, mock_exchange_rate_parameter):
