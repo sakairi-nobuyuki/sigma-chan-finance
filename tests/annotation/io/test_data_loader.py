@@ -17,5 +17,7 @@ class TestDataLoader:
 
         array_list = data_loader.load_data()
 
+        print(array_list[0])
+
         assert len(array_list) > 0
         assert array_list[0].ndim > 0
