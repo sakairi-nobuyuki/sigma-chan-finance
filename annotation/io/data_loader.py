@@ -1,6 +1,7 @@
 # coding: utf-8
 
-from annotation.data_structure import AnnotationDataClass
+
+from annotation.data_structure import DatasetParameters
 import numpy as np
 import os
 from typing import Any
@@ -8,9 +9,12 @@ from pathlib import Path
 import glob
 
 class DataLoader:
-    def __init__(self) -> None:
+    def __init__(self, parameters: DatasetParameters) -> None:
+        if not isinstance(parameters, DatasetParameters):
+            raise Exception(f"Dataset parameter instance is not valid")
+
         self.working_dir = os.path.normpath(os.path.abspath(__file__))
-        self.data_dir = os.path.normpath(os.path.join(self.working_dir, '../../../data'))
+        self.data_dir = os.path.normpath(os.path.join(self.working_dir, '../../../' + parameters.source_dir))
         self.data_file_list = self._obtain_data_file_list()
 
     def __call__(self) -> Any:

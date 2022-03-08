@@ -5,7 +5,7 @@ import numpy as np
 from scipy.signal import argrelmax, argrelmin
 import itertools
 
-class Annotation:
+class ExtremaAnnotation:
     def __init__(self, source: np.ndarray) -> None:
         self.source = source
         
@@ -33,4 +33,18 @@ class Annotation:
 
         return extrema_combinations_list
 
-    
+class PutCallAnnotation:
+    def __init__(self) -> None:
+        pass
+
+    def __call__(self, source: np.ndarray, extrema: list) -> np.ndarray:
+        return self.annotate_binary(source, extrema)
+
+    def annotate_binary(self, source: np.ndarray, extrema: list) -> np.ndarray:
+        annotated = np.zeros(source.size)
+        for j in range(0, len(extrema) - 1, 2):
+            annotated[extrema[j]: extrema[j + 1]] = 1
+        annotated[:1] = -1
+        annotated[-1:] = -1
+
+        return annotated

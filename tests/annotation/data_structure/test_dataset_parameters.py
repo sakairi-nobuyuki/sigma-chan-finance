@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from annotation.data_structure import DatasetDirectoryParameters, DatasetCreationParameters, DatasetParameters
+from annotation.data_structure import DatasetParameters
 
 
 class TestDatasetCreationParameters:

@@ -1,15 +1,15 @@
 # coding: utf-8
 
 
-from annotation.components import Annotation, annotation
+from annotation.components import ExtremaAnnotation
 import numpy as np
 import random
 
 class TestAnnotation:
     def test_init(self, mock_one_dim_ndarray: np.ndarray):
-        annotation = Annotation(mock_one_dim_ndarray)
+        annotation = ExtremaAnnotation(mock_one_dim_ndarray)
         
-        assert isinstance(annotation, Annotation)
+        assert isinstance(annotation, ExtremaAnnotation)
         assert len(list(annotation.obtain_maxima_minima())) > 0
 
     def test_peaks(self):
@@ -17,7 +17,7 @@ class TestAnnotation:
 
         print(source)
 
-        annotation = Annotation(source)
+        annotation = ExtremaAnnotation(source)
 
         print(annotation.obtain_maxima_minima())
         print(annotation.obtain_extrema_combinations(annotation.obtain_maxima_minima()))
