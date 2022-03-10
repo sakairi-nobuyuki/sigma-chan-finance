@@ -28,11 +28,13 @@ class AbstractData(metaclass=ABCMeta):
 
 class BinaryData(AbstractData):
     res: int
+    loss: float
 
-    def __init__(self, source: np.ndarray, annotation: np.ndarray, res: int) -> None:
+    def __init__(self, source: np.ndarray, annotation: np.ndarray, res: int, loss: float) -> None:
         self.source = source
         self.annotation = annotation
         self.res = res
+        self.loss = loss
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         return super().__call__(*args, **kwds)

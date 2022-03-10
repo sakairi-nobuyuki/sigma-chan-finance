@@ -29,7 +29,8 @@ def mock_one_dim_oscillating_ndarray():
 def mock_dataset_creation_parameters():
     dataset_creation_dict = {
         "length": 256,
-        "offer_cost": 2.0
+        "offer_cost": 2.0,
+        "number_of_data": 10
     }
 
     return dataset_creation_dict

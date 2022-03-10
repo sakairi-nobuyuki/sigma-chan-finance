@@ -14,6 +14,7 @@ class DatasetDirectoryParameters(BaseModel):
 
 class DatasetCreationParameters(BaseModel):
     length: int = 256
+    number_of_data: int = 100
     offer_cost: float = 0.0
 
 class DatasetParameters(BaseModel):
