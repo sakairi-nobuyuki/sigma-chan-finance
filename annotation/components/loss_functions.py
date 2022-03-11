@@ -18,6 +18,8 @@ class LossFunctions:
 
     def calculate_gain_binary_annotation(self, source: np.ndarray, annotation: np.ndarray, extrema: list, offer_cost: float):
 
+        
+
         return (np.where(annotation < -1, 0, annotation) * source).sum() - len(extrema) * offer_cost
 
     def _validate_array(self, source: np.ndarray, extrema: np.ndarray):

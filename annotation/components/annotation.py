@@ -6,16 +6,20 @@ from scipy.signal import argrelmax, argrelmin
 import itertools
 
 class ExtremaAnnotation:
-    def __init__(self, source: np.ndarray) -> None:
-        self.source = source
-        
+#    def __init__(self, source: np.ndarray) -> None:
+#        self.source = source
+
+    def __init__(self) -> None:
+        pass
+
+
     def __call__(self) -> np.ndarray:
         return self.obtain_extrema_combinations(self.obtain_maxima_minima())
 
 
-    def obtain_maxima_minima(self) -> np.ndarray:
-        maxima = argrelmax(self.source)
-        minima = argrelmin(self.source)
+    def obtain_maxima_minima(self, source: np.ndarray) -> np.ndarray:
+        maxima = argrelmax(source)
+        minima = argrelmin(source)
         
         if len(maxima) == 0 or len(minima) == 0:
             raise ValueError('Size of annotation source is too small so that no obvious zero gradient point was found.')
