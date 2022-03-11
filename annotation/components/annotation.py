@@ -13,8 +13,8 @@ class ExtremaAnnotation:
         pass
 
 
-    def __call__(self) -> np.ndarray:
-        return self.obtain_extrema_combinations(self.obtain_maxima_minima())
+    def __call__(self, source) -> np.ndarray:
+        return self.obtain_extrema_combinations(self.obtain_maxima_minima(source))
 
 
     def obtain_maxima_minima(self, source: np.ndarray) -> np.ndarray:
