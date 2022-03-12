@@ -2,10 +2,10 @@
 
 
 
-from sigma_chan_finance.data_structure.parameters import DataReader as Parameters
-from sigma_chan_finance.data_structure.data_classes import DataReader as DataClass
-from sigma_chan_finance.io import DataReader as InputOutput
-from sigma_chan_finance.pipeline import DataReader
+from data_reader.data_structure.parameters import DataReader as Parameters
+from data_reader.data_structure.data_classes import DataReader as DataClass
+from data_reader.io import DataReader as InputOutput
+from data_reader.pipeline import DataReader
 
 import json
 import argparse
