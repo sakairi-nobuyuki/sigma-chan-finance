@@ -36,7 +36,7 @@ class DatasetPreparation:
             for i_chop in data_chopper.generate_data_chopping_parameters():
                 small_source = data_chopper.chop_array(source, i_chop)
                 small_annotation = data_chopper.chop_array(annotation, i_chop)
-                small_loss = loss.calculate_gain_binary_annotation(small_loss, small_annotation)
+                small_loss = loss.calculate_gain_binary_annotation(small_loss, small_annotation, self.parameters.dataset_spec.offer_cost)
                 data = BinaryData(small_source, small_annotation, small_annotation[-1], small_loss)
 
                 dataset.append_random(data, self.parameters)
