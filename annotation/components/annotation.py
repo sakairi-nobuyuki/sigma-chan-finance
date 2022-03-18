@@ -3,6 +3,7 @@
 from typing import List
 import numpy as np
 from scipy.signal import argrelmax, argrelmin
+from scipy.special import comb
 import itertools
 
 class ExtremaAnnotation:
@@ -10,6 +11,7 @@ class ExtremaAnnotation:
 #        self.source = source
 
     def __init__(self) -> None:
+        self._binary_combination_list = []
         pass
 
 
@@ -26,12 +28,28 @@ class ExtremaAnnotation:
 
         return np.array(list(set(maxima[0].tolist() + minima[0].tolist())))
 
+    def generage_extrema_combinations_set(self, extremas: np.ndarray):
+        pass
+
+    def generate_binary_comination(self, n: int):
+        for i in range(2**n):
+
+            yield np.array(list(bin(i)[2:].zfill(n))).astype(int)
+        
+
+
+
     def obtain_extrema_combinations(self, extremas: np.ndarray) -> List[List[int]]:
-        extremas_list = extremas.tolist()
+        extremas_list = sorted(extremas.tolist())
         extrema_combinations_list = []
+        
         for i in range(len(extremas_list)):
-            for combination in itertools.combinations(extremas_list, i):
+            #print(len(list(itertools.combinations(extremas_list, i))), i)
+        
+            #for combination in itertools.combinations(extremas_list, i):
+            for combination in comb(extremas_list, i, exact=True):
                 extrema_combinations_list.append(list(combination))
+                print("length of extrema combination: ", len(extrema_combinations_list))
 
         extrema_combinations_list = [combination for combination in extrema_combinations_list if len(combination) > 2]
 
