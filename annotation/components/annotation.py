@@ -26,34 +26,25 @@ class ExtremaAnnotation:
         if len(maxima) == 0 or len(minima) == 0:
             raise ValueError('Size of annotation source is too small so that no obvious zero gradient point was found.')
 
-        return np.array(list(set(maxima[0].tolist() + minima[0].tolist())))
+        return np.array(sorted(list(set(maxima[0].tolist() + minima[0].tolist()))))
 
     def generage_extrema_combinations_set(self, extremas: np.ndarray):
         pass
 
-    def generate_binary_comination(self, n: int):
+    def binary_comination_generator(self, n: int):
         for i in range(2**n):
-
             yield np.array(list(bin(i)[2:].zfill(n))).astype(int)
         
+    def obtain_binary_combination(self, i: int, n: int):
+        return np.array(list(bin(i)[2:].zfill(n))).astype(int)
 
 
+    def extrema_combinations_generator(self, extremas: np.ndarray) -> List[List[int]]:
+        extremas_length = extremas.size
+        for i in range(2**extremas_length):
+            selected_array = self.obtain_binary_combination(i, extremas_length) * extremas
+            yield selected_array[selected_array.nonzero()]
 
-    def obtain_extrema_combinations(self, extremas: np.ndarray) -> List[List[int]]:
-        extremas_list = sorted(extremas.tolist())
-        extrema_combinations_list = []
-        
-        for i in range(len(extremas_list)):
-            #print(len(list(itertools.combinations(extremas_list, i))), i)
-        
-            #for combination in itertools.combinations(extremas_list, i):
-            for combination in comb(extremas_list, i, exact=True):
-                extrema_combinations_list.append(list(combination))
-                print("length of extrema combination: ", len(extrema_combinations_list))
-
-        extrema_combinations_list = [combination for combination in extrema_combinations_list if len(combination) > 2]
-
-        return extrema_combinations_list
 
 class PutCallAnnotation:
     def __init__(self) -> None:
