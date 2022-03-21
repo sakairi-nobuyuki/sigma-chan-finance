@@ -2,8 +2,10 @@
 
 
 from typing import List
+from numba import jit
 import numpy as np
 from scipy.signal import argrelmax, argrelmin
+import datetime
 
 from annotation.components.loss_functions import LossFunctions
 
@@ -47,10 +49,12 @@ class ExtremaAnnotation:
             selected_array = self.obtain_binary_combination(i, extremas_length) * extremas
             yield selected_array[selected_array.nonzero()]
 
+    
     def obtain_extrema_combinations(self, source: np.ndarray, extremas: np.ndarray, offer_cost: float):
         extremas_length = extremas.size
         combination_generator = self.extrema_combinations_generator(extremas)
         loss = 0.0
+        start = datetime.datetime.now()
         minor_extrema_tmp = np.array([0])
         for i in range(2**extremas_length):
             minor_extrema = combination_generator.__next__()
@@ -59,8 +63,12 @@ class ExtremaAnnotation:
             if loss_tmp > loss:
                 loss = loss_tmp
                 minor_extrema_tmp = minor_extrema
-                print(f"  in {i} th combination evaluation, loss = {loss_tmp}, combination_minor = {minor_extrema}")
+                print(f"  in {i} th combination evaluation, loss = {loss_tmp}, combination_minor = {minor_extrema}, timedelta = {datetime.datetime.now() - start}")
         return minor_extrema_tmp
+
+
+
+
 
 class PutCallAnnotation:
     def __init__(self) -> None:

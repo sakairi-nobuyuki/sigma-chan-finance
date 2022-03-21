@@ -61,3 +61,9 @@ def mock_dataset_parameters():
         }
     }
     return dataset_parameters
+
+
+
+@pytest.fixture(scope="session")
+def mock_ndarray_for_cluster():
+    return np.array([0.0, 0.1, 0.05, 1.0, 0.9, 1.02, 2.0, 1.8, 2.2])

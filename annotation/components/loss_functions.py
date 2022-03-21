@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import numpy as np
+from numba import jit
 
 class LossFunctions:
     def __init__(self) -> None:
@@ -9,6 +10,7 @@ class LossFunctions:
     def __call__(self, source: np.ndarray, extrema: np.ndarray, offer_cost: float) -> float:
         return self.calculate_gain(source, extrema, offer_cost)
 
+   # @jit(nopython=True)
     def calculate_gain(self, source: np.ndarray, extrema: list, offer_cost: float) -> float:
         gain_list = []
         gain_list = [source[extrema[j+1]] - source[extrema[j]] for j in range(0, len(extrema) - 1, 2)]
