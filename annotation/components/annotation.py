@@ -1,18 +1,17 @@
 # coding: utf-8
 
+
 from typing import List
 import numpy as np
 from scipy.signal import argrelmax, argrelmin
-from scipy.special import comb
-import itertools
+
+from annotation.components.loss_functions import LossFunctions
+
 
 class ExtremaAnnotation:
-#    def __init__(self, source: np.ndarray) -> None:
-#        self.source = source
-
     def __init__(self) -> None:
-        self._binary_combination_list = []
-        pass
+        self.loss = LossFunctions()
+        
 
 
     def __call__(self, source) -> np.ndarray:
@@ -41,10 +40,27 @@ class ExtremaAnnotation:
 
     def extrema_combinations_generator(self, extremas: np.ndarray) -> List[List[int]]:
         extremas_length = extremas.size
+        print(f"total number of combinations: {2**extremas_length}, {extremas}")
+        
         for i in range(2**extremas_length):
+            
             selected_array = self.obtain_binary_combination(i, extremas_length) * extremas
             yield selected_array[selected_array.nonzero()]
 
+    def obtain_extrema_combinations(self, source: np.ndarray, extremas: np.ndarray, offer_cost: float):
+        extremas_length = extremas.size
+        combination_generator = self.extrema_combinations_generator(extremas)
+        loss = 0.0
+        minor_extrema_tmp = np.array([0])
+        for i in range(2**extremas_length):
+            minor_extrema = combination_generator.__next__()
+            loss_tmp = self.loss.calculate_gain(source, minor_extrema, offer_cost)
+            
+            if loss_tmp > loss:
+                loss = loss_tmp
+                minor_extrema_tmp = minor_extrema
+                print(f"  in {i} th combination evaluation, loss = {loss_tmp}, combination_minor = {minor_extrema}")
+        return minor_extrema_tmp
 
 class PutCallAnnotation:
     def __init__(self) -> None:

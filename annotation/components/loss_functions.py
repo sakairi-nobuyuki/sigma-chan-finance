@@ -13,7 +13,7 @@ class LossFunctions:
         gain_list = []
         gain_list = [source[extrema[j+1]] - source[extrema[j]] for j in range(0, len(extrema) - 1, 2)]
         gain_array = np.array(gain_list)
-        gain = np.sum(gain_array) - len(extrema) * offer_cost
+        gain = np.sum(gain_array) - len(gain_list) * offer_cost
         return gain
 
     def calculate_gain_binary_annotation(self, source: np.ndarray, annotation: np.ndarray, offer_cost: float):
