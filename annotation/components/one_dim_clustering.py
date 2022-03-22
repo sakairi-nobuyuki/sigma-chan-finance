@@ -13,7 +13,8 @@ class OneDimClustering(metaclass=ABCMeta):
     @abstractmethod
     def fit(self, source: np.ndarray) -> np.ndarray:
         pass
-
+    
+    @abstractmethod
     def create_representative_set(self, source: np.ndarray, labels: np.ndarray) -> Any:
         pass
 
@@ -38,6 +39,8 @@ class OneDimKNN(OneDimClustering):
         return model.labels_
 
 
+    def create_representative_set(self, source: np.ndarray, labels: np.ndarray) -> Any:
+        pass
 
     def obtain_number_of_clusters(self, source: np.ndarray, cluster_size: int = 4) -> int:
         return super().obtain_number_of_clusters(source, cluster_size)

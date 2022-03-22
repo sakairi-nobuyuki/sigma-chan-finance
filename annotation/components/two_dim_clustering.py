@@ -14,7 +14,9 @@ class TwoDimClustering(metaclass=ABCMeta):
     def fit(self, src_rate: np.ndarray, src_pos: np.ndarray, cluster_size: int = 4) -> np.ndarray:
         pass
 
+    @abstractmethod
     def create_representative_set(self, source: np.ndarray, labels: np.ndarray) -> Any:
+
         pass
 
     @abstractmethod
@@ -42,7 +44,19 @@ class TwoDimKNN(TwoDimClustering):
 
         return model.labels_
 
-
+    def create_representative_set(self, source: np.ndarray, labels: np.ndarray) -> Any:
+        
+        if labels.ndim == 1:
+            res_list=[]
+            n_class = labels.max() + 1
+            for i in range(n_class):
+                minour_res = np.where(labels == i, source, 0)
+                minour_res = np.nonzero(minour_res)[0]
+                
+                res_list.append(minour_res)
+            return res_list
+        else:
+            raise Exception(f"On creating representative set for clusters, label dimension is larger than one.")
 
     def obtain_number_of_clusters(self, source: np.ndarray, cluster_size: int = 4) -> int:
         return super().obtain_number_of_clusters(source, cluster_size)

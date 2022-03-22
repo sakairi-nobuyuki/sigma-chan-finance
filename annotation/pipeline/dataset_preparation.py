@@ -1,11 +1,14 @@
 # coding: utf-8
 
+from annotation.components.two_dim_clustering import TwoDimKNN
 from annotation.data_structure import DatasetParameters
 from annotation.data_structure.data_class import AbstractDataset
 from annotation.io import DataLoader
 from annotation.data_structure import BinaryDataset, BinaryData
 from annotation.components import ExtremaAnnotation, PutCallAnnotation, DataChopper, LossFunctions
+import numpy as np
 import json
+import pprint
 
 from annotation.io.dataset_storage import AbstractDatasetStorage
 
@@ -42,7 +45,9 @@ class DatasetPreparation:
             print("  Searching best extrema combination")
             print(source)
             print(maxima_minima)
-            extrema_combination = extrema.obtain_extrema_combinations(source, maxima_minima, self.parameters.dataset_spec.offer_cost)
+            clusters = self.create_extremas_clusters(source, maxima_minima)
+            maxima_minima_clustered_representatives = self.create_cluster_representatives(clusters)
+            extrema_combination = extrema.obtain_extrema_combinations(source, maxima_minima_clustered_representatives, self.parameters.dataset_spec.offer_cost)
             print("  Annotating put or call")
             annotation = put_call(source, extrema_combination)
             print("  Divide data into fragmented small data")
@@ -59,6 +64,25 @@ class DatasetPreparation:
                 
 
         return dataset
+
+    def create_extremas_clusters(self, src: np.ndarray, extremas: np.ndarray) -> list:
+        
+        src_at_extrema = np.array([src[i] for i in extremas.tolist()])
+
+        print("  size of extremas and source to make clusters: ", src_at_extrema.shape, extremas.shape)
+
+        knn2dim = TwoDimKNN()
+        labels = knn2dim.fit(src_at_extrema, extremas)
+        clusters = knn2dim.create_representative_set(src_at_extrema, labels)
+
+        return clusters
+
+    def create_cluster_representatives(self, clusters: list) -> np.ndarray:
+
+        representatives = np.array(sorted([cluster[int(cluster.size / 2)] for cluster in clusters]))
+        print(representatives)
+        return representatives
+
 
     def load_dataset(self):
         pass
