@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from annotation.components import LossFunctions
-from annotation.components import ExtremaAnnotation, PutCallAnnotation
+from annotation.components import LossFunctions, LossFunctionsSingleArg
+from annotation.components import ExtremaAnnotation, PutCallAnnotation, MoreBetterPattern
 import numpy as np
 
 class TestLossFunctions:
@@ -56,3 +56,12 @@ class TestLossFunctions:
         
         np.testing.assert_array_equal(loss.obtain_delta(mock_annotation), np.array([0, -1, 1, 0, 0, -1, 0, 1]))
         assert loss.calculate_gain_binary_annotation(mock_source, mock_annotation, 2) == -1.0
+
+class TestLossFunctionsSingleArg:
+    def test_init(self, mock_ndarray_for_cluster):
+        
+        loss_1a = LossFunctionsSingleArg(mock_ndarray_for_cluster, mock_ndarray_for_cluster, 0.1, ExtremaAnnotation)
+        extrema_annotation = MoreBetterPattern(loss_1a)
+        
+    def test_calculate_gain(self):
+        pass

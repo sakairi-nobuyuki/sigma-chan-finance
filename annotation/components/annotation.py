@@ -5,9 +5,10 @@ from typing import List
 from numba import jit
 import numpy as np
 from scipy.signal import argrelmax, argrelmin
+from skopt import gp_minimize
 import datetime
 
-from annotation.components.loss_functions import LossFunctions
+from annotation.components import LossFunctions, LossFunctionsSingleArg
 
 
 class ExtremaAnnotation:
@@ -49,6 +50,10 @@ class ExtremaAnnotation:
             selected_array = self.obtain_binary_combination(i, extremas_length) * extremas
             yield selected_array[selected_array.nonzero()]
 
+    def obtain_extrema_combination(self, extremas: np.ndarray, i: int, n: int):
+        selected_array = self.obtain_binary_combination(i, n) * extremas
+        return selected_array[selected_array.nonzero()]
+
     
     def obtain_extrema_combinations(self, source: np.ndarray, extremas: np.ndarray, offer_cost: float):
         extremas_length = extremas.size
@@ -67,8 +72,18 @@ class ExtremaAnnotation:
         return minor_extrema_tmp
 
 
+    def obtain_extrema_best_combination_by_baysian(self, source: np.ndarray, extremas: np.ndarray, offer_cost: float):
+        
+        pass
 
+class MoreBetterPattern:
+    def __init__(self, loss: LossFunctionsSingleArg) -> None:
+        self.loss = loss
 
+    def obtain_extrema_combinations(self, source: np.ndarray, extremas: np.ndarray, offer_cost: float):
+        res = gp_minimize(self.loss.calculate_gain, [])
+        
+    
 
 class PutCallAnnotation:
     def __init__(self) -> None:
