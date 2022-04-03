@@ -4,7 +4,7 @@ import torch
 
 
 
-class RNN(torch.nn.Module):
+class SigmaChanRNN(torch.nn.Module):
     def __init__(self, input_size: int, hidden_layer_units: int) -> None:
         super().__init__()
         self.network = torch.nn.RNN(input_size, hidden_layer_units)

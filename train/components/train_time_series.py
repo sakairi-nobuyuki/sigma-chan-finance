@@ -1,13 +1,12 @@
 # coding: utf-8
 
-from abc import ABCMeta, abstractmethod
+from train.components import SigmaChanRNN
 from typing import Any
 import torch
 import numpy as np
 
-class TimeSeriesTrain(metaclass=ABCMeta):
+class TimeSeriesTrain:
     """Abstract training model for time series analysis model"""
-    @abstractmethod
     def __init__(self) -> None:
         """Initialize training model in abstract items
         Args:
@@ -23,8 +22,23 @@ class TimeSeriesTrain(metaclass=ABCMeta):
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         print("device: ", self.device, type(self.device))
 
+        ### compile model
+        self.model = self.compile_model()
+        self.loss = torch.nn.L1Loss()
+        self.optimizer = torch.optim.SGD(self.model.parameters(), lr=0.01)
 
-    @abstractmethod
+
     def compile_model(self) -> Any:
-        self.model = 
+        model = self.load_sigma_chan_rnn()
+
+        return model
+        
+
+    def load_sigma_chan_rnn(self) -> SigmaChanRNN:
+        return SigmaChanRNN(256, 13)
+
+
+    def train_model(self, n_epochs: int):
+
         pass
+            

@@ -2,10 +2,10 @@
 
 import torch
 
-from train.components.operators import TrainRnn
+from train.components import TimeSeriesTrain
 
 class TestTrainRnn:
     def test_init(self):
-        self.rnn = TrainRnn()
+        self.rnn = TimeSeriesTrain()
         
         assert isinstance(self.rnn.device, torch.device)
