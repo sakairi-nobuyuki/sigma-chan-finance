@@ -5,7 +5,7 @@ from typing import Any
 import torch
 import numpy as np
 
-class TimeSeriesTrain:
+class TimeSeriesTrainConfig:
     """Abstract training model for time series analysis model"""
     def __init__(self) -> None:
         """Initialize training model in abstract items
@@ -38,7 +38,3 @@ class TimeSeriesTrain:
         return SigmaChanRNN(256, 13)
 
 
-    def train_model(self, n_epochs: int):
-
-        pass
-            
