@@ -22,19 +22,10 @@ class TimeSeriesTrainConfig:
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         print("device: ", self.device, type(self.device))
 
-        ### compile model
-        self.model = self.compile_model()
-        self.loss = torch.nn.L1Loss()
-        self.optimizer = torch.optim.SGD(self.model.parameters(), lr=0.01)
-
-
-    def compile_model(self) -> Any:
-        model = self.load_sigma_chan_rnn()
-
-        return model
-        
 
     def load_sigma_chan_rnn(self) -> SigmaChanRNN:
         return SigmaChanRNN(256, 13)
+
+
 
 
