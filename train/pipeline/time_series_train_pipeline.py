@@ -30,7 +30,7 @@ class TimeSeriesTrainPipeline:
         return train_loader
 
     def compile_model(self) -> Any:
-        model = self.train_config.load_sigma_chan_rnn()
+        model = self.train_config.load_sigma_chan_rnn().to(self.train_config.device)
 
         return model
 
@@ -42,7 +42,8 @@ class TimeSeriesTrainPipeline:
             train_loss = 0.0
 
             for j, (x, t) in enumerate(train_loader):
-                loss = self.loss_function(self.model(x), t.to(self.train_config.device))
+                y = self.model(x.to(self.train_config.device))
+                loss = self.loss_function(y, t.to(self.train_config.device))
                 train_loss += loss.item()
                 self.optimizer.zero_grad()
                 loss.backward()

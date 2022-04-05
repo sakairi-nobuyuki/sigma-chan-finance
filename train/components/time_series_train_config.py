@@ -26,6 +26,3 @@ class TimeSeriesTrainConfig:
     def load_sigma_chan_rnn(self) -> SigmaChanRNN:
         return SigmaChanRNN(256, 13)
 
-
-
-

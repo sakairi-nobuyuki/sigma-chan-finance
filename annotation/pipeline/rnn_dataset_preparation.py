@@ -25,13 +25,13 @@ class RnnDatasetPreparation:
 
     def create_minor_array_list(self, array: np.ndarray) -> list:
 
-        train_array_list = []
-        correct_data_list = []
+        train_array = np.zeros((self.parameters.dataset_spec.number_of_data, self.parameters.dataset_spec.length, 1))
+        correct_data = np.zeros((self.parameters.dataset_spec.number_of_data, 1))
         for i in range(self.parameters.dataset_spec.number_of_data):
-            train_array_list.append(self.data_chopper.chop_array(array, self.chop_pos_list[i]))
-            correct_data_list.append(array[self.chop_pos_list[i] + self.parameters.dataset_spec.length + self.x_day])
+            train_array[i] = self.data_chopper.chop_array(array, self.chop_pos_list[i]).reshape(-1, 1)
+            correct_data[i] = array[self.chop_pos_list[i] + self.parameters.dataset_spec.length + self.x_day]
 
-        return train_array_list, correct_data_list
+        return train_array, correct_data
     
 
 
