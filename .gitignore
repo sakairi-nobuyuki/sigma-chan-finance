@@ -132,3 +132,4 @@ dmypy.json
 ### for me
 parameters/
 data/
+*.pth

@@ -74,3 +74,20 @@ class TimeSeriesTrainPipeline:
             if i%10 == 0:
                 print(f"Epoch: {i}, Train loss: {train_loss}")
                 self.model.eval()
+
+    def save_model(self, model_path: str, gpu_flag: bool = False):
+        if "pth" not in model_path.split(".")[-1]:
+            model_path = model_path + ".pth"
+
+        if gpu_flag:
+            torch.save(self.model.state_dict(), model_path)
+        else:
+            torch.save(self.model.to("cpu").state_dict(), model_path)
+        
+
+    def load_model(self, model_path: str, gpu_flag: bool = False):
+        if gpu_flag:
+            self.model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")))
+        else:
+            self.model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")))
+        
