@@ -1,7 +1,7 @@
 # coding: utf-8
 
 
-from train.components import SigmaChanRNN
+from time_series_analysis.components import SigmaChanRNN
 
 
 class TestRnn:

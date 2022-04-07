@@ -1,11 +1,11 @@
 # coding: utf-8
 
-from train.components import SigmaChanRNN
+from time_series_analysis.components import SigmaChanRNN
 from typing import Any
 import torch
 import numpy as np
 
-class TimeSeriesTrainConfig:
+class TimeSeriesNetworkConfig:
     """Abstract training model for time series analysis model"""
     def __init__(self) -> None:
         """Initialize training model in abstract items

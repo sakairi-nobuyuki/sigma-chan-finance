@@ -2,8 +2,8 @@
 
 import os
 import numpy as np
-from train.pipeline import TimeSeriesTrainPipeline
-from train.components import SigmaChanRNN
+from time_series_analysis.pipeline import TimeSeriesTrainPipeline
+from time_series_analysis.components import SigmaChanRNN
 
 
 class TestTimeSeriesTrainPipeline:

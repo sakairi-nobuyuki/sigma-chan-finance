@@ -1,2 +1,2 @@
-from train.components.time_series_model import *
-from train.components.time_series_train_config import *
+from time_series_analysis.components.time_series_model import *
+from time_series_analysis.components.time_series_network_config import *

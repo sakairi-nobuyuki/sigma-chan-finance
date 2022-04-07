@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from train.pipeline import TimeSeriesTrainPipeline
+from time_series_analysis.pipeline import TimeSeriesTrainPipeline
 from annotation.data_structure import DatasetParameters
 import json
 

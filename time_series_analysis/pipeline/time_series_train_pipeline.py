@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from typing import Any
-from train.components import TimeSeriesTrainConfig
+from time_series_analysis.components import TimeSeriesNetworkConfig
 from annotation.pipeline import RnnDatasetPreparation
 from annotation.data_structure import DatasetParameters
 import torch
@@ -9,7 +9,7 @@ import torch
 class TimeSeriesTrainPipeline:
     """Pipeline for time series data training"""
     def __init__(self) -> None:
-        self.train_config = TimeSeriesTrainConfig()
+        self.train_config = TimeSeriesNetworkConfig()
 
         self.train_loader = 0.0
 
