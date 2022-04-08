@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from time_series_analysis.components.time_series_network_config import TimeSeriesNetworkConfig
 from time_series_analysis.pipeline import TimeSeriesTrainPipeline
 from annotation.data_structure import DatasetParameters
 import json
