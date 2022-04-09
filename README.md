@@ -1,2 +1,2 @@
-# sigma-chan-finance
-Sigma-chan financial something
+# sigma-chan-nandece
+そうです。私がΣちゃんなんです。

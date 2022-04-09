@@ -14,6 +14,8 @@ class DataReader:
         data_df = io.read_data(data_class)
         data_df = io.fill_dropped_date_value_by_upwind_value(data_df)
         data_array = io.extract_values_as_ndarray(data_class, data_df)
-        io.save_values_as_ndarray(data_array, data_class.data_save_path)
+        
+        return data_array
+        
         
 
