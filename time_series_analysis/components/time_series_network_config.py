@@ -26,3 +26,30 @@ class TimeSeriesNetworkConfig:
     def load_sigma_chan_rnn(self) -> SigmaChanRNN:
         return SigmaChanRNN(256, 13)
 
+    def compile_model(self) -> Any:
+        """Configure and compile the model structure according to the setting parameter
+        
+        Return: 
+            model: torch.nn: model"""
+
+        model = self.load_sigma_chan_rnn().to(self.device)
+
+        return model
+
+
+    def load_model(self, model: Any, model_path: str, gpu_flag: bool = False) -> Any:
+        if gpu_flag:
+            model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")))
+        else:
+            model.load_state_dict(torch.load(model_path, map_location=torch.device("cpu")))
+
+        return model
+
+    def save_model(self, model_path: str, model: Any, gpu_flag: bool = False) -> None: 
+        if "pth" not in model_path.split(".")[-1]:
+            model_path = model_path + ".pth"
+
+        if gpu_flag:
+            torch.save(model.state_dict(), model_path)
+        else:
+            torch.save(model.to("cpu").state_dict(), model_path)
