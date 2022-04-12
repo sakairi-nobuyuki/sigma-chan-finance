@@ -18,6 +18,12 @@ class TimeSeriesInferencePipeline:
 
         ### initialize RNN inference
         self.inference_config = TimeSeriesNetworkConfig()
+        self.inference_config.device = torch.device("cpu")
 
         ### compile model
-        self.model = self.inference_config.load_sigma_chan_rnn()
+        self.model = self.inference_config.compile_model()
+
+        ### load model
+        self.model = self.inference_config.load_model(self.model, "trained_model/20220413.pth")
+
+        

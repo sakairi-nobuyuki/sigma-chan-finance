@@ -56,10 +56,12 @@ class TimeSeriesTrainPipeline:
 
     def train_model(self, n_epochs: int, train_loader: torch.utils.data.DataLoader) -> Any:
         train_loss_record = []
+        train_loss_tmp = 1.0E+09
         for i in range(n_epochs):
-            self.model.train()
             train_loss = 0.0
 
+            self.model.train()
+            
             for j, (x, t) in enumerate(train_loader):
                 y = self.model(x.to(self.train_config.device))
                 loss = self.loss_function(y, t.to(self.train_config.device))
@@ -75,6 +77,9 @@ class TimeSeriesTrainPipeline:
                 print(f"Epoch: {i}, Train loss: {train_loss}")
                 self.model.eval()
 
+                if train_loss_tmp > train_loss:
+                    self.save_model("trained_model/20200413")
+
     def save_model(self, model_path: str, gpu_flag: bool = False):
         if "pth" not in model_path.split(".")[-1]:
             model_path = model_path + ".pth"
@@ -83,6 +88,7 @@ class TimeSeriesTrainPipeline:
             torch.save(self.model.state_dict(), model_path)
         else:
             torch.save(self.model.to("cpu").state_dict(), model_path)
+            self.model.to(self.train_config.device)
         
 
     def load_model(self, model_path: str, gpu_flag: bool = False):
