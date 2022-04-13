@@ -20,10 +20,16 @@ class TimeSeriesInferencePipeline:
         self.inference_config = TimeSeriesNetworkConfig()
         self.inference_config.device = torch.device("cpu")
 
+        
+
+    def load_model(self) -> Any:
         ### compile model
-        self.model = self.inference_config.compile_model()
+        model = self.inference_config.compile_model()
 
         ### load model
-        self.model = self.inference_config.load_model(self.model, "trained_model/20220413.pth")
-
+        model = self.inference_config.load_model(model, "trained_model/20220413.pth")
         
+        return model
+
+    def load_data(self):
+        pass
