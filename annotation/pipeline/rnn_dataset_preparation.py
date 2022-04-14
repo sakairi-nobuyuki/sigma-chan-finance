@@ -34,5 +34,5 @@ class RnnDatasetPreparation:
         return train_array, correct_data
     
 
-
+    
 

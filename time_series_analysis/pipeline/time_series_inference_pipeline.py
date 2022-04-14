@@ -26,6 +26,15 @@ class TimeSeriesInferencePipeline:
 
         ### initialize data reader pipeline
         self.data_reader = DataReaderPipeline(self.parameters)
+        
+    def __call__(self, *args: Any, **kwds: Any) -> Any:
+        
+        data_tensor = self.data_reader.prepare_data_tensor()
+        res = self.model(data_tensor)
+
+        return res
+
+        
 
     def load_model(self) -> Any:
         ### compile model
@@ -37,4 +46,4 @@ class TimeSeriesInferencePipeline:
         return model
 
     
-        
+    

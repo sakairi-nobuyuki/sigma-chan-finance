@@ -43,6 +43,6 @@ class DataReaderPipeline:
 
     def create_data_tensor(self, array: np.ndarray) -> Any:
         
-        one_dim_array = np.zeros((array.size, 1))
-        one_dim_array = array.reshape(-1, 1)
+        one_dim_array = np.zeros((1, array.size, 1))
+        one_dim_array[0] = array.reshape(-1, 1)
         return torch.FloatTensor(one_dim_array)
