@@ -5,6 +5,8 @@ from time_series_analysis.components import TimeSeriesNetworkConfig
 from annotation.pipeline import RnnDatasetPreparation
 from annotation.data_structure import DatasetParameters
 from data_reader.data_structure.parameters import DataReader as DataReaderParameters
+from data_reader.pipeline import DataReaderPipeline
+import numpy as np
 import torch
 
 
@@ -20,7 +22,10 @@ class TimeSeriesInferencePipeline:
         self.inference_config = TimeSeriesNetworkConfig()
         self.inference_config.device = torch.device("cpu")
 
-        
+        self.model = self.load_model()
+
+        ### initialize data reader pipeline
+        self.data_reader = DataReaderPipeline(self.parameters)
 
     def load_model(self) -> Any:
         ### compile model
@@ -31,5 +36,5 @@ class TimeSeriesInferencePipeline:
         
         return model
 
-    def load_data(self):
-        pass
+    
+        

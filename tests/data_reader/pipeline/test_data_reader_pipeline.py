@@ -9,7 +9,8 @@ class TestDataReaderPipeline:
 
         parameters = DataReaderParameters(**mock_exchange_rate_parameter)
         data_reader = DataReaderPipeline(parameters)
-        array = data_reader()
-        print(array)
+        tensor = data_reader.prepare_data_tensor()
+        print(tensor)
+        print(np.zeros((1, 3, 1)))
         assert isinstance(data_reader, DataReaderPipeline)
-        assert isinstance(array, np.ndarray)
+        

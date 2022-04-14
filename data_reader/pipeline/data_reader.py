@@ -4,6 +4,8 @@ from typing import Any
 from data_reader.data_structure.parameters import DataReader as DataReaderParameters
 from data_reader.data_structure.data_classes import DataReader as DataClass
 from data_reader.io import DataReader as InputOutput
+import numpy as np
+import torch
 
 
 class DataReader:
@@ -25,8 +27,22 @@ class DataReaderPipeline:
 
     def __call__(self) -> Any:
     #def __call__(self, *args: Any, **kwds: Any) -> Any:
+        pass
+
+    def prepare_data_array(self) -> np.ndarray:
         data_df = self.io.read_data(self.data_class)
         data_df = self.io.fill_dropped_date_value_by_upwind_value(data_df)
-        data_aarray = self.io.extract_values_as_ndarray(self.data_class, data_df)
+        
+        data_array = self.io.extract_values_as_ndarray(self.data_class, data_df)
+        
+        return data_array
 
-        return data_aarray
+    def prepare_data_tensor(self) -> Any:
+        array = self.prepare_data_array()
+        return self.create_data_tensor(array)
+
+    def create_data_tensor(self, array: np.ndarray) -> Any:
+        
+        one_dim_array = np.zeros((array.size, 1))
+        one_dim_array = array.reshape(-1, 1)
+        return torch.FloatTensor(one_dim_array)
