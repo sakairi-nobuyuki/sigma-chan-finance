@@ -1,15 +1,14 @@
 # coding: utf-8
 
-import typer
+from fastapi import FastAPI
 import datetime
 
-app = typer.Typer()
+app = FastAPI()
 
 
-@app.command()
-def smoke_test():
-    print(f"smoking dayo (^ ^) at {datetime.datetime.now()}")
+@app.get("/")
+async def smoke_test():
+    #print(f"smoking dayo (^ ^) at {datetime.datetime.now()}")
+    return {"message": f"smoking dayo (^ ^) at {datetime.datetime.now()}"}
 
 
-if __name__ == "__main__":
-    app()    

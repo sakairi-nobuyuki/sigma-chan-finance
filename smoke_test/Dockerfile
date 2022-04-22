@@ -26,4 +26,6 @@ COPY . $HOME
 RUN poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi
 
-CMD ["python3", "smoke_test.py"]
+ENV PATH $HOME/.local/bin:$PATH
+
+CMD ["uvicorn", "smoke_test:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smoke-test-deployment
+  labels:
+    app: smoke-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smoke-test
+  template:
+    metadata:
+      labels:
+        app: smoke-test
+    spec:
+      containers:
+      - name: smoke-test-container
+        image: smoke-test:00.00
+        ports:
+        - containerPort: 3000
