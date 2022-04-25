@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: smoke-test-deployment
+  name: smoke-test
   labels:
     app: smoke-test
 spec:
@@ -15,7 +15,7 @@ spec:
         app: smoke-test
     spec:
       containers:
-      - name: smoke-test-container
+      - name: smoke-test
         image: smoke-test:00.00
         ports:
-        - containerPort: 3000
+        - containerPort: 80

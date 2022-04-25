@@ -22,10 +22,12 @@ ENV PATH $HOME/.poetry/bin:$PATH
 
 
 ### install python modules
+#EXPOSE 80
+
 COPY . $HOME
 RUN poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi
 
 ENV PATH $HOME/.local/bin:$PATH
 
-CMD ["uvicorn", "smoke_test:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "smoke_test:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
