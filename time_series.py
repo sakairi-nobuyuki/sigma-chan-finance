@@ -40,7 +40,8 @@ def infer_rnn_cli(job_id: str, parameters_path: str):
     infer_rnn(job_id, parameters_str)
 
 @app.get("/")
-async def infer_rnn(job_id: str, parameters_str: str):    
+async def infer_rnn():
+#async def infer_rnn(job_id: str, parameters_str: str):    
     ### loading parameters
     ### Loading training parameters
     parameters_str = ""
@@ -53,5 +54,5 @@ async def infer_rnn(job_id: str, parameters_str: str):
 
 
 
-if __name__ == "__main__":
-    app()
+#if __name__ == "__main__":
+#    app()
