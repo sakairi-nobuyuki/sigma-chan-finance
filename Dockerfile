@@ -26,3 +26,9 @@ COPY . $HOME
 RUN poetry config virtualenvs.create false && \
     poetry install --no-interaction --no-ansi
 
+### Add uvicorn path
+ENV PATH $HOME/.local/bin:$PATH
+
+### something server
+
+CMD ["uvicorn", "time_series_analysis:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
