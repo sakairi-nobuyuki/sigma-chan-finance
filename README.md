@@ -4,13 +4,14 @@
 ## Docker
 ### Docker build
 ```
-$ docker build -t sigma-chan-nandece:00.00 .
+$ make image
 ```
 
+### Docker run
 
-### Docker run for inference
 ```
-$ docker run -it sigma-chan-nandece:00.00 python3 time_series_analysis.py --help
+$ make run
+```
 
 ### Minikube
 
