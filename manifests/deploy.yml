@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: time-series
+  labels:
+    app: time-series
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: time-series
+  template:
+    metadata:
+      labels:
+        app: time-series
+    spec:
+      containers:
+      - name: time-series
+        image: rnn-dayo:00.00
+        ports:
+        - containerPort: 80
