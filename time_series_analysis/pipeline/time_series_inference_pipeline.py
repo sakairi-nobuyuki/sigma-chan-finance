@@ -31,8 +31,9 @@ class TimeSeriesInferencePipeline:
         
         data_tensor = self.data_reader.prepare_data_tensor()
         res = self.model(data_tensor)
+        res_cpu = res.detach().numpy().copy()
 
-        return res
+        return res_cpu[0][0]
 
         
 

@@ -1,4 +1,4 @@
-IMAGE_NAME=rnn-dayo
+IMAGE_NAME=time-series
 IMAGE_TAG=00.00
 
 K8S_NAMESPACE=$(IMAGE_NAME)
@@ -12,7 +12,7 @@ run:
 reset_docker_env:
 	eval $(minikube -p minikube docker-env -u)
 deploy:
-	eval $(minikube docker-env)
+	eval $(minikube -p minikube docker-env)
 	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
 	kubectl create namespace $(K8S_NAMESPACE)
 	kubectl create -f ./manifests -n $(K8S_NAMESPACE)
@@ -23,4 +23,4 @@ clear_containers:
 clear_images:
 	docker ps -aq | xargs docker stop
 	docker ps -aq | xargs docker rm
-	docker images -aq | xargs docker rmi
+	docker images -aq | xargs docker -f rmi

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: time-series
-        image: rnn-dayo:00.00
+        image: time-series:00.00
         ports:
         - containerPort: 80
