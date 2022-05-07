@@ -4,16 +4,42 @@
 ## Docker
 ### Docker build
 ```
-$ docker build -t sigma-chan-nandece:00.00 .
+$ make image
 ```
 
+### Docker run
 
-### Docker run for inference
 ```
-$ docker run -it sigma-chan-nandece:00.00 python3 time_series_analysis.py --help
+$ make run
+```
 
-### Minikube
+## Minikube
 
+### Start minikube
+
+```
+$ minikube start
+```
+
+### Deployment
+
+```
+$ make deploy
+```
+
+### Turn-back to normal 
+
+```
+$ make reset_docker_env
+```
+
+## Dockerイメージみんな頃す
+
+```
+$ make clear_images
+```
+
+<strike>
 ```
 $ eval $(minikube docker-env)
 ```
@@ -30,3 +56,4 @@ $ kubectl -n argo port-forward deployment/argo-server 3333:3333 &
 ```
 $ kubectl -n argo exec -it $(kubectl get --no-headers=true pods -n argo -o name -l app=argo-server) -- argo auth token
 ```
+</strike>
