@@ -45,10 +45,11 @@ async def infer_rnn_today(job_id: str):
     print("Time series inference of the day")
     parameters_str = json.dumps(obtain_todays_inference_parameter(256))
     print("  Job ID: ", job_id)
-    print("  Today's parameter: ", parameters_str, type(parameters_str))
+    print("  Today's parameter:  ", parameters_str, type(parameters_str))
+    print("  Today's input data: ", )
     res = infer_rnn(job_id, parameters_str)
     print("  results: ", res)
-    return {"today": str(res)}
+    return res
 
 
 def infer_rnn(job_id: str, parameters_str: str):

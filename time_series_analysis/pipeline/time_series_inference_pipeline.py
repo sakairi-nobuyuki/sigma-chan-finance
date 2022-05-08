@@ -5,6 +5,7 @@ import json
 from time_series_analysis.components import TimeSeriesNetworkConfig
 from data_reader.data_structure.parameters import DataReader as DataReaderParameters
 from data_reader.pipeline import DataReaderPipeline
+from data_reader.components.operators import *
 from time_series_analysis.components.operators import obtain_todays_inference_parameter
 import numpy as np
 import torch
@@ -33,7 +34,13 @@ class TimeSeriesInferencePipeline:
         res = self.model(data_tensor)
         res_cpu = res.detach().numpy().copy()
 
-        return res_cpu[0][0]
+        today = get_date_in_str()
+        future = get_date_in_str(5)
+
+        data_array  = self.data_reader.prepare_data_array()
+        
+
+        return {future: str(res_cpu[0][0]), today: str(data_array[-1])}
 
         
 
