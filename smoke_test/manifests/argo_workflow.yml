@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: hello-world-
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      This is a smoke test
+spec:
+  entrypoint: smoke-test
+  templates:
+  - name: smoke-test
+    container:
+      image: smoke_test:00.01
+      #command: [python3]
+      command: [python3, smoke_test.py]
+      #command: [uvicorn smoke-test:app --reload]
+      #args: ["hello world"]
