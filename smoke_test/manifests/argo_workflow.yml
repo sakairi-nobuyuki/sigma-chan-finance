@@ -13,7 +13,4 @@ spec:
   - name: smoke-test
     container:
       image: smoke_test:00.01
-      #command: [python3]
       command: [python3, smoke_test.py]
-      #command: [uvicorn smoke-test:app --reload]
-      #args: ["hello world"]
