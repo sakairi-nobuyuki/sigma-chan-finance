@@ -31,4 +31,4 @@ ENV PATH $HOME/.local/bin:$PATH
 
 ### something server
 
-CMD ["uvicorn", "time_series:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
+#CMD ["uvicorn", "time_series:app", "--reload", "--host", "0.0.0.0", "--port", "80"]

@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: time-series
-        image: time-series:00.00
+        image: time-series:00.01
         ports:
         - containerPort: 80

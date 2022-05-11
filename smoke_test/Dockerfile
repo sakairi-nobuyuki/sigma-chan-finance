@@ -30,4 +30,4 @@ RUN poetry config virtualenvs.create false && \
 
 ENV PATH $HOME/.local/bin:$PATH
 
-CMD ["uvicorn", "smoke_test:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
+#CMD ["uvicorn", "smoke_test:app", "--reload", "--host", "0.0.0.0", "--port", "80"]
