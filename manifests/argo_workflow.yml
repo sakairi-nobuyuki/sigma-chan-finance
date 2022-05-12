@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: time-series-analysis-
+  labels:
+    workflows.argoproj.io/archive-strategy: "false"
+  annotations:
+    workflows.argoproj.io/description: |
+      Time series analysis.
+spec:
+  entrypoint: time-series
+  templates:
+  - name: time-series
+    container:
+      image: time-series:00.00
+      command: [python3, time_series.py, infer-rnn-today]
+      args: ["testtest"]

@@ -24,13 +24,16 @@ $ minikube start
 ### Deployment
 
 ```
+$ make clear_images
+$ eval `minikube -p minikube docker-env`
 $ make deploy
+$ eval `minikube -p minikube docker-env -u`
 ```
 
 ### Turn-back to normal 
 
 ```
-$ make reset_docker_env
+$ eval `minikube -p minikube docker-env -u`
 ```
 
 ## Dockerイメージみんな頃す

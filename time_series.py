@@ -6,11 +6,11 @@ from time_series_analysis.components.time_series_network_config import TimeSerie
 from time_series_analysis.pipeline import TimeSeriesTrainPipeline, TimeSeriesInferencePipeline
 from annotation.data_structure import DatasetParameters
 import json
-from fastapi import FastAPI
+import typer
 
-app = FastAPI()
+app = typer.Typer()
 
-
+@app.command()
 def train_rnn(job_id: str, parameters_str: str):
     ### Loading training parameters
     parameters_dict = json.loads(parameters_str)
@@ -40,15 +40,18 @@ def infer_rnn_cli(job_id: str, parameters_path: str):
         parameters_str = json.dumps(parameters)
     infer_rnn(job_id, parameters_str)
 
-@app.get("/")
-async def infer_rnn_today(job_id: str):
+#@app.get("/")
+@app.command()
+def infer_rnn_today(job_id: str):
+#async def infer_rnn_today(job_id: str):
     print("Time series inference of the day")
     parameters_str = json.dumps(obtain_todays_inference_parameter(256))
     print("  Job ID: ", job_id)
-    print("  Today's parameter: ", parameters_str, type(parameters_str))
+    print("  Today's parameter:  ", parameters_str, type(parameters_str))
+    print("  Today's input data: ", )
     res = infer_rnn(job_id, parameters_str)
     print("  results: ", res)
-    return {"today": str(res)}
+    return res
 
 
 def infer_rnn(job_id: str, parameters_str: str):
