@@ -15,6 +15,9 @@ WORKDIR $HOME
 ### install python
 RUN sudo apt install --no-install-recommends -y python3.8 python3-pip python3.8-dev
 
+### install mysql client
+RUN sudo apt install --no-install-recommends -y default-libmysqlclient-dev
+
 ### install poetry
 RUN sudo apt install --no-install-recommends -y curl && \
     curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
