@@ -1,14 +1,21 @@
-from email.policy import default
-from sqlalchemy import Column, String, DateTime, Float
-from settings import Base
+
+from sqlalchemy import Column, String, DateTime, Integer, Float
+from db.settings import Base
 from datetime import datetime
 
-class RecordModel(Base):
-    __tablename__ = "record"
+class InferenceResultsModel(Base):
+    __tablename__ = "inference results"
 
-    type = Column(String(16), primary_key=True)
-    name = Column(String(16), primary_key=True)
+    id = Column(Integer, primary_key = True, autoincrement=True)
+    #id = Column(Integer, primary_key = True, index=True)    
+    type = Column(String(16), nullable=False)
+    name = Column(String(16), nullable=False)
     value = Column(Float, nullable=False)
     source = Column(String(16), nullable=False)
-    created_at = Column("created", DateTime, default=datetime.now(), nullable=False)
     modified_at = Column("modified", DateTime, default=datetime.now(), nullable=False)
+    created_at = Column("created", DateTime, default=datetime.now(), nullable=False)
+
+
+    def print_model_by_id(self, id: str) -> None:
+        print(f"Contents of InferenceResults of {id}")
+        print(f"  id: {self.id}, type: {self.type}, name: {self.name}, value: {self.value}")
