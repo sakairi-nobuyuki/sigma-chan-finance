@@ -1,5 +1,6 @@
 
-from sqlalchemy import Column, String, DateTime, Integer, Float
+from sqlalchemy import Column, String, DateTime, Integer, Float, Index
+#from settings import Base
 from db.settings import Base
 from datetime import datetime
 
@@ -7,7 +8,6 @@ class InferenceResultsModel(Base):
     __tablename__ = "inference results"
 
     id = Column(Integer, primary_key = True, autoincrement=True)
-    #id = Column(Integer, primary_key = True, index=True)    
     type = Column(String(16), nullable=False)
     name = Column(String(16), nullable=False)
     value = Column(Float, nullable=False)

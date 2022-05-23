@@ -7,11 +7,39 @@ import sqlalchemy.ext.declarative
 
 import configparser
 
+from db import DatabaseOperation
 
-
-from db.settings import Base
+from db.settings import Base, Engine
 from db.models import InferenceResultsModel
 
+import pytest
+
+
+@pytest.mark.db_operation
+class TestDatabaseOperation:
+    def test_init(self):
+        db = DatabaseOperation()
+        res = InferenceResultsModel(type="hoge", name="hoge", value=1.0, source="fuga")
+        db.insert(res)
+
+        assert isinstance(db, DatabaseOperation)
+
+    def test_print_keys(self):
+        db = DatabaseOperation()
+        #inspector = sqlalchemy.inspect(Engine)
+        #columns = inspector.get_columns("inference results")
+        res_dict = {"type": "hoge", "name": "hoge", "value": 1.0, "source": "fuga"}
+        columns_list = db._get_columns()
+        
+        assert len(columns_list) > 0
+
+        res = db.load_inference_results_model(res_dict)
+
+        assert isinstance(res, InferenceResultsModel)
+        assert res.type == res_dict["type"]
+        assert res.name == res_dict["name"]
+
+@pytest.mark.db
 class TestDataBase:
     def test_db_url(self):
         config = configparser.ConfigParser()

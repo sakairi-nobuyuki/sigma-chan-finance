@@ -16,7 +16,7 @@ config.read(config_path)
 Engine = create_engine(
   config["alembic"]["sqlalchemy.url"],
   encoding="utf-8",
-  echo=False
+  echo=True
 )
 Base = declarative_base()
 
