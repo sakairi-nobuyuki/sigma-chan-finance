@@ -12,8 +12,9 @@ app = typer.Typer()
 
 @app.command()
 def insert_data(res: str):
-    print(res)
+    print("Insert results to DB")
     res = json.loads(res)
+    print("  res: ", res)
     db = DatabaseOperation()
     res = db.load_inference_results_model(res)
     db.insert(res)
