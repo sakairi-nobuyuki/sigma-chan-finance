@@ -1,6 +1,7 @@
 
 from sqlalchemy import Column, String, DateTime, Integer, Float, Index
-from db.settings import Base
+from settings import Base
+#from db.settings import Base
 
 from datetime import datetime
 

@@ -6,8 +6,10 @@ from sqlalchemy.orm import sessionmaker
 import sqlalchemy
 import sqlalchemy.ext.declarative
 
-from db.models import InferenceResultsModel
-from db.settings import Engine, Base
+from models import InferenceResultsModel
+#from db.models import InferenceResultsModel
+#from db.settings import Engine, Base
+from settings import Engine, Base
 
 
 class DatabaseOperation:

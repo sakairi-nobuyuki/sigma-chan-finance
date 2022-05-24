@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import json
 import os
 from sqlalchemy.orm import sessionmaker
 import sqlalchemy
@@ -11,9 +12,19 @@ from db import DatabaseOperation
 
 from db.settings import Base, Engine
 from db.models import InferenceResultsModel
+import subprocess
 
 import pytest
 
+
+
+#class TestDataBase:
+#    def test_run_database():
+#        arg = json.dumps({"type": "hoge", "name": "hoge", "value": 1.0, "source": "fuga"})
+
+#        assert type(arg) == str
+
+#        subprocess.run(["poetry"])
 
 @pytest.mark.db_operation
 class TestDatabaseOperation:
@@ -50,8 +61,6 @@ class TestDataBase:
     def test_db_url(self):
         config = configparser.ConfigParser()
         config.read("alembic.ini")
-        #config.read("../alembic.ini")
-        ##config.read("../../db/alembic.ini")
         
         assert config["alembic"]["sqlalchemy.url"]
         assert config["alembic"]["sqlalchemy.url"] == "sqlite:///time_series_inference.db"
