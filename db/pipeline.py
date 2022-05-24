@@ -7,7 +7,6 @@ import sqlalchemy
 import sqlalchemy.ext.declarative
 
 from db.models import InferenceResultsModel
-
 from db.settings import Engine, Base
 
 
@@ -49,7 +48,7 @@ class DatabaseOperation:
     def _get_columns(self) -> list:
         """Get columns of the table."""
         inspector = sqlalchemy.inspect(Engine)
-        columns = inspector.get_columns("inference results")
+        columns = inspector.get_columns("inference_results")
 
         column_name_list = [column["name"] for column in columns]
 

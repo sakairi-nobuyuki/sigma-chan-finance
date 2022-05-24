@@ -26,8 +26,6 @@ class TestDatabaseOperation:
 
     def test_print_keys(self):
         db = DatabaseOperation()
-        #inspector = sqlalchemy.inspect(Engine)
-        #columns = inspector.get_columns("inference results")
         res_dict = {"type": "hoge", "name": "hoge", "value": 1.0, "source": "fuga"}
         columns_list = db._get_columns()
         
@@ -39,6 +37,14 @@ class TestDatabaseOperation:
         assert res.type == res_dict["type"]
         assert res.name == res_dict["name"]
 
+
+    def test_insert(self):
+        db = DatabaseOperation()
+        res_dict = {"type": "hoge", "name": "hoge", "value": 1.0, "source": "fuga"}
+        res = db.load_inference_results_model(res_dict)
+        db.insert(res)
+
+@pytest.mark.skip(reason="no longer needed")
 @pytest.mark.db
 class TestDataBase:
     def test_db_url(self):

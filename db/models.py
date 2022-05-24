@@ -1,11 +1,11 @@
 
 from sqlalchemy import Column, String, DateTime, Integer, Float, Index
-#from settings import Base
 from db.settings import Base
+
 from datetime import datetime
 
 class InferenceResultsModel(Base):
-    __tablename__ = "inference results"
+    __tablename__ = "inference_results"
 
     id = Column(Integer, primary_key = True, autoincrement=True)
     type = Column(String(16), nullable=False)
