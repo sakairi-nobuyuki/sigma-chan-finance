@@ -12,6 +12,7 @@ from models import InferenceResultsModel
 from settings import Engine, Base
 
 
+
 class DatabaseOperation:
     def __init__(self):
         self.session = sessionmaker(bind=Engine)()
