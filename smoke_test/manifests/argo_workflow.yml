@@ -11,6 +11,11 @@ spec:
   entrypoint: smoke-test
   templates:
   - name: smoke-test
+    inputs: 
+      parameters:
+        - name: job_id
+          value: "001"
     container:
-      image: smoke_test:00.01
-      command: [python3, smoke_test.py]
+      image: smoke-test:00.00
+      command: [python3, smoke_test.py, smoke-test]
+      args: ["{{inputs.parameters.job_id}}"]      

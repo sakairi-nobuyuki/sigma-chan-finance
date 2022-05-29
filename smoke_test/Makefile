@@ -1,5 +1,5 @@
-IMAGE_NAME=smoke_test
-IMAGE_TAG=00.01
+IMAGE_NAME=smoke-test
+IMAGE_TAG=00.00
 
 K8S_NAMESPACE=$(IMAGE_NAME)
 
@@ -14,6 +14,8 @@ start_argo_wf:
 	kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/install.yaml
 submit_argo_wf:
 	argo submit -n argo --watch manifests/argo_workflow.yml	
+submit_argo_seq_wf:
+	argo submit -n argo --watch manifests/argo_wf_steps.yml		
 delete_argo_wf:
 	kubectl delete -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/install.yaml
 	kubectl delete rolebinding default-admin
