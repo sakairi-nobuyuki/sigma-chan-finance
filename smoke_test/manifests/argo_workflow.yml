@@ -5,7 +5,7 @@ metadata:
   labels:
     workflows.argoproj.io/archive-strategy: "false"
   annotations:
-    workflows.argoproj.io/description: |
+    workflows.argoproj.io/description: 
       This is a smoke test
 spec:
   entrypoint: smoke-test

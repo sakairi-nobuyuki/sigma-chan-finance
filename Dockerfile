@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 ### add a non-root user
-RUN apt update && apt install sudo
+RUN apt update -y && apt install sudo && apt-get upgrade -y
 ARG USERNAME=sigma_chan && GROUPNAME=user && UID=1000 && GID=1000 
 ARG PASSWD=$USERNAME && HOME=/home/$USERNAME
 

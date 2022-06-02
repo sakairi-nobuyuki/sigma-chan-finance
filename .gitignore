@@ -137,3 +137,4 @@ data/
 #### db
 db/migrations/versions/
 *.db
+.vscode

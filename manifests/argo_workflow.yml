@@ -8,10 +8,42 @@ metadata:
     workflows.argoproj.io/description: |
       Time series analysis.
 spec:
+  ttlStrategy:
+    secondsAfterCompletion: 10
+    secondsAfterSuccess: 5
+    secondsAfterFailure: 5
   entrypoint: time-series
   templates:
   - name: time-series
+    steps:
+    - - name: step-1
+        template: time-series-analysis
+        arguments:
+          parameters:
+            - name: job_id
+              value: testtest
+    - - name: step-2
+        template: time-series-db
+        arguments: 
+          parameters:
+          - name: res
+            value: "{{steps.step-1.outputs.result}}"
+#        withParam: "{{steps.step-1.outputs.result}}"
+  - name: time-series-analysis
+    inputs:
+      parameters:
+      - name: job_id
     container:
       image: time-series:00.00
       command: [python3, time_series.py, infer-rnn-today]
-      args: ["testtest"]
+      args: ["{{inputs.parameters.job_id}}"]
+  - name: time-series-db
+    inputs:
+      parameters:
+      - name: res
+    container:
+      image: time-series-db:00.00
+      command: [python3, database.py]
+      args: ["{{inputs.parameters.res}}"]
+
+    

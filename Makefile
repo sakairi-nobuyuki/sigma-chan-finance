@@ -23,13 +23,14 @@ apply:
 start_argo_wf:
 	kubectl create namespace argo
 	kubectl apply -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/install.yaml
+	kubectl create rolebinding default-admin --clusterrole=admin --serviceaccount=argo:default --namespace=argo
 submit_argo_wf:
 	argo submit -n argo --watch manifests/argo_workflow.yml	
 submit_cron_wf:
 	argo cron create -n argo manifests/cron_workflow.yml		
 delete_argo_wf:
 	kubectl delete -n argo -f https://raw.githubusercontent.com/argoproj/argo-workflows/master/manifests/install.yaml
-	kubectl delete rolebinding default-admin
+	kubectl delete rolebinding default-admin --namespace=argo
 	kubectl delete namespace argo
 
 clear_deploy:

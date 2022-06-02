@@ -13,7 +13,6 @@ scipy = "^1.8.0"
 torch = "^1.11.0"
 torchvision = "^0.12.0"
 typer = "^0.4.1"
-mysql = "^0.0.3"
 alembic = "^1.7.7"
 PyMySQL = "^1.0.2"
 
