@@ -8,10 +8,10 @@ metadata:
     workflows.argoproj.io/description: |
       Time series analysis.
 spec:
-  ttlStrategy:
-    secondsAfterCompletion: 10
-    secondsAfterSuccess: 5
-    secondsAfterFailure: 5
+#  ttlStrategy:
+#    secondsAfterCompletion: 10
+#    secondsAfterSuccess: 5
+#    secondsAfterFailure: 5
   entrypoint: time-series
   templates:
   - name: time-series

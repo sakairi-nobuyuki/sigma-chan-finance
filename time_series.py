@@ -5,8 +5,11 @@ from time_series_analysis.components.operators.parameter_generator_today import 
 from time_series_analysis.components.time_series_network_config import TimeSeriesNetworkConfig
 from time_series_analysis.pipeline import TimeSeriesTrainPipeline, TimeSeriesInferencePipeline
 from annotation.data_structure import DatasetParameters
+from db.pipeline import DatabaseOperation
+from db.models import InferenceResultsModel
 import json
 import typer
+import time
 
 app = typer.Typer()
 
@@ -40,10 +43,9 @@ def infer_rnn_cli(job_id: str, parameters_path: str):
         parameters_str = json.dumps(parameters)
     infer_rnn(job_id, parameters_str)
 
-#@app.get("/")
+
 @app.command()
 def infer_rnn_today(job_id: str):
-#async def infer_rnn_today(job_id: str):
     print("Time series inference of the day")
     parameters_str = json.dumps(obtain_todays_inference_parameter(256))
     print("  Job ID: ", job_id)
@@ -51,6 +53,18 @@ def infer_rnn_today(job_id: str):
     print("  Today's input data: ", )
     res = infer_rnn(job_id, parameters_str)
     print("  results: ", res)
+    
+    print("Register to DB")
+    db = DatabaseOperation()
+    res = InferenceResultsModel(type="5", name="JPUS", value=res["future_res"], source="FRED")
+    db.insert(res)
+    #db.__del__()
+    
+    
+    #res_today = InferenceResultsModel(type="0", name="JPUS", value=res["today_res"], source="FRED")
+    #db = DatabaseOperation()
+    #db.insert(res_today)
+
     return res
 
 

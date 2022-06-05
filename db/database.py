@@ -21,7 +21,7 @@ def insert_data(res: str):
     db = DatabaseOperation()
     res = db.load_inference_results_model(res)
     db.insert(res)
-
+    db.__del__()
 
 if __name__ == "__main__":
     app()

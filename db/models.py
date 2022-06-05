@@ -1,11 +1,21 @@
 
 from sqlalchemy import Column, String, DateTime, Integer, Float, Index
-from settings import Base
-#from db.settings import Base
+#from settings import Base
+from db.settings import Base
 
 from datetime import datetime
 
 class InferenceResultsModel(Base):
+    """Database model of inference.
+
+    Attributes:
+        id: int: ID number
+        type: str: Today or future. "0": Today, "5": 5 days later.
+        name: str: Name of trade, market and so on. WTI, Nikkei, JPUS and others. 
+        value: float: Predicted value.
+        source: str: Input data source, ex; FRED.
+    """
+
     __tablename__ = "inference_results"
 
     id = Column(Integer, primary_key = True, autoincrement=True)

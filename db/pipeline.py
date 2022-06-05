@@ -6,23 +6,25 @@ from sqlalchemy.orm import sessionmaker
 import sqlalchemy
 import sqlalchemy.ext.declarative
 
-from models import InferenceResultsModel
-#from db.models import InferenceResultsModel
-#from db.settings import Engine, Base
-from settings import Engine, Base
+#from models import InferenceResultsModel
+from db.models import InferenceResultsModel
+from db.settings import Engine, Base
+#from settings import Engine, Base
 
 
 
 class DatabaseOperation:
     def __init__(self):
+        print("  Creating a sesssion")
         self.session = sessionmaker(bind=Engine)()
         
+        print("  DB session start.")
         Base.metadata.create_all(bind=Engine)
-        print("DB session started.")
+        print("  Initialized DB.")
 
     def __del__(self):
         self.session.close()
-        print("DB session closed.")
+        print("  DB session closed.")
 
     def insert(self, res: Base):
         """Insert data to the DB. Data shall be given in the form of DB model."""
