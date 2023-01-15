@@ -1,0 +1,3 @@
+[submodule "sigma-chan-nandece/rakuten_rss"]
+	path = sigma-chan-nandece/rakuten_rss
+	url = git@github.com:zaq9/rakuten_rss.git
