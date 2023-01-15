@@ -40,7 +40,11 @@ class TimeSeriesInferencePipeline:
         data_array  = self.data_reader.prepare_data_array()
         
 
-        return {future: str(res_cpu[0][0]), today: str(data_array[-1])}
+        return {
+            "furutre_date": future,
+            "future_res": str(res_cpu[0][0]), 
+            "today_date": today,
+            "today_res": str(data_array[-1])}
 
         
 

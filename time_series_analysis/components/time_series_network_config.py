@@ -20,7 +20,7 @@ class TimeSeriesNetworkConfig:
         self.n_time = 10
         self.n_sample = self.n_len - self.n_time
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        print("device: ", self.device, type(self.device))
+        #print("device: ", self.device, type(self.device))
 
 
     def load_sigma_chan_rnn(self) -> SigmaChanRNN:

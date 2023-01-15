@@ -14,7 +14,14 @@ spec:
     entrypoint: time-series
     templates:
       - name: time-series
+        steps:
+        - name: 
         container:
           image: time-series:00.00
           command: [python3, time_series.py, infer-rnn-today]
           args: ["testtest"]
+      - name: insert-db
+        container:
+          image: time-series-db:00.00
+          command: [python3, database.py]
+          args: [{{time-series}}]
